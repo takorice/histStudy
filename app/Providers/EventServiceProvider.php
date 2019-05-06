@@ -14,11 +14,17 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-    ];
+     protected $listen = [
+         Registered::class => [
+             SendEmailVerificationNotification::class,
+         ],
+         //2019.05.06 add start
+         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+             // add your listeners (aka providers) here
+             'SocialiteProviders\Twitter\TwitterExtendSocialite@handle',
+         ],
+         //2019.05.06 add end
+     ];
 
     /**
      * Register any events for your application.
